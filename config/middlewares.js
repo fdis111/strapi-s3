@@ -1,4 +1,4 @@
-module.exports = [
+module.exports = ({ env }) => [
   "strapi::errors",
   {
     name: "strapi::security",
@@ -7,12 +7,7 @@ module.exports = [
         useDefaults: true,
         directives: {
           "connect-src": ["'self'", "https:"],
-          "img-src": [
-            "'self'",
-            "data:",
-            "blob:",
-            "https://francois-disubi.s3.eu-west-3.amazonaws.com",
-          ],
+          "img-src": ["'self'", "data:", "blob:", env("S3_URL")],
           "media-src": ["'self'", "data:", "blob:"],
           upgradeInsecureRequests: null,
         },
